@@ -1,0 +1,35 @@
+
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="login-card p-4 shadow rounded">
+  
+      <!-- Login Form -->
+      <div class="text-center mb-4">
+        <h2>Welcome to Rental Service</h2>
+        <hr>
+        <h2 class="mt-2">Sign In</h2>
+      </div>
+  
+      <form (ngSubmit)="1==1">
+        <label for="email" class="form-label">Email</label>
+        <div class="form-group mb-3">
+          <input type="email" class="form-control" id="email" placeholder="Enter Email..." required>
+        </div>
+        <div class="form-group mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" placeholder="Enter Password..." required>
+        </div>
+        <div class="form-group mb-3" style="display: flex; justify-content: space-between; align-items: center; text-decoration: none !important;">
+          <a href="#" class="login-forgot">Forgot Password?</a>
+          <small>
+            Take a <a href="#">FREE TRIAL</a>.
+          </small>
+        </div>
+  
+        <button type="submit" class="btn btn-primary w-100">Submit</button>
+      </form>
+      <hr>
+      <a class="btn btn-sm btn-outline-info" (click)="backToHome()"><i class="fa fa-arrow-left" aria-hidden="true"></i>
+        Back</a>
+  
+    </div>
+  </div>

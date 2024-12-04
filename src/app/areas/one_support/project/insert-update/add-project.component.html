@@ -1,0 +1,179 @@
+<ng-template #addProjectModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">
+            <i class="icofont-money"></i>| {{modalTitle}}
+        </h4>
+        <button type="button" class="close" aria-label="Close" (click)="closeModal('Cross click')"><span
+                aria-hidden="true">×</span></button>
+    </div>
+    <div class="text-small font-bold text-dark">
+        <form [formGroup]="form!" (ngSubmit)="submit()">
+            <div class="modal-header">
+                <div class="form-group col-12 col-md-4 col-sm-12">
+                    <label for="projectTypes" class="control-label font-bold">Select Project Type</label><span class="text-danger"> * </span>
+                    <div class="input-group">                   
+                        <div class="input-group-prepend">
+                            <span class="input-group-addon text-dark">
+                                <i class="icofont-briefcase"></i>
+                            </span>
+                        </div>
+                        <div style="width: 80%">
+                            <ng-select2 [data]="ddlProjectTypes" name="projectTypes"
+                                formControlName="typeId" id="projectTypes"
+                                [placeholder]="'Project Type...'" [options]="select2Options"
+                                [allowClear]="true" [required]="true">
+                            </ng-select2>
+                        </div>
+                    </div>
+                </div>    
+                <div class="form-group col-12 col-md-4 col-sm-12">
+                    <label for="projectName" class="control-label font-bold">Project Name</label><span class="text-danger"> * </span>
+                    <div class="input-group">                   
+                        <div class="input-group-prepend">
+                            <span class="input-group-addon text-dark">
+                                <i class="fa fa-paypal"></i>
+                            </span>
+                        </div>
+                        <input type="text" formControlName="projectName"
+                        class="form-control form-control-sm" name="projectName">  
+                    </div>
+                </div>             
+                    
+                <div class="form-group col-12 col-md-4 col-sm-12">
+                    <label for="projectLocation" class="control-label font-bold">Location</label><span class="text-danger"> * </span>
+                    <div class="input-group">                   
+                        <div class="input-group-prepend">
+                            <span class="input-group-addon text-dark">
+                                <i class="fa fa-location-arrow"></i>
+                            </span>
+                        </div>                 
+                        <input type="text" formControlName="projectLocation"
+                        class="form-control form-control-sm" name="projectLocation">                         
+                    </div>
+                </div>   
+             
+            </div>
+            <div class="modal-header">
+
+                <div class="form-group col-12 col-md-4 col-sm-12">
+                    <label for="contactNumber" class="control-label font-bold">Contact No</label><span class="text-danger"> * </span>
+                    <div class="input-group">                         
+                        <div class="input-group-prepend">
+                            <span class="input-group-addon text-dark">
+                                <i class="fa fa-phone"></i>
+                            </span>
+                        </div>
+                        <input type="text" formControlName="contactNumber"
+                        class="form-control form-control-sm" name="contactNumber">                                                        
+                    </div>
+                </div>
+                <div class="form-group col-12 col-md-4 col-sm-12">      
+                    <label for="description" class="control-label font-bold">Description</label>       
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-addon text-dark">
+                              <i class="fa fa-comment"></i>
+                            </span>
+                        </div>
+                        <input type="text" formControlName="description" id="description"
+                        class="form-control form-control-sm" name="description">
+                    </div>  
+                  
+                  
+                </div>
+           
+                <div class="form-group col-12 col-md-4 col-sm-12">      
+                    <label for="projectUser" class="control-label font-bold">User</label><span class="text-danger"> * </span>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-addon text-dark">
+                              <i class="fa fa-user"></i>
+                            </span>
+                        </div>
+                        <input type="text" formControlName="projectUser" id="projectUser"
+                        class="form-control form-control-sm" name="projectUser">
+                    </div>
+                                            
+                </div>
+
+            </div>
+          
+            <!-- <div class="input-group-prepend">
+                <label for="projectTypes" class="control-label font-bold">Project Type</label>   
+                  &nbsp;   &nbsp;          
+                <div style="width: 80%">
+                    <ng-select2 [data]="ddlProjectTypes" name="projectTypes"
+                        formControlName="typeId" id="projectTypes"
+                        [placeholder]="'Select...'" [options]="select2Options"
+                        [allowClear]="true" required>
+                    </ng-select2>
+                </div>
+            </div> -->
+            <div class="modal-body">
+                <div formArrayName="projects" *ngFor="let payment of formArray; let i = index">
+                    <div class="ibox">
+                        <div class="ibox-content pb-1 shadow-sm">
+                            <div [formGroupName]="i" class="form-row">   
+                                <div class="form-group col-12 col-md-6 col-sm-12">
+                                    <label for="elementName" class="control-label font-bold">Element Name</label><span class="text-danger"> * </span>                                  
+                                    <div class="input-group">                         
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-addon text-dark">
+                                                <i class="fa fa-address-card"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" formControlName="elementName"
+                                        class="form-control form-control-sm" name="elementName">                                                        
+                                    </div>
+                                 
+                                </div>
+                                                 
+
+                                <div class="form-group col-12 col-md-5 col-sm-12">
+                                    <label for="measurement" class="control-label font-bold">Measurement</label><span class="text-danger"> * </span>
+                                    <div class="input-group">                         
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-addon text-dark">
+                                                <i class="fa fa-magnet"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" formControlName="measurement"
+                                        class="form-control form-control-sm" name="measurement">     
+
+                                    </div>
+
+                                </div>
+                            
+
+                                <div class="form-group col-12 col-md-1 col-sm-12">     
+                                    <label for="measurement" class="control-label font-bold">Action</label>                          
+                                    <div class="input-group">                                                           
+                                        <div class="input-group-prepend cursor-pointer" (click)="addProjects(i)">
+                                            <span class="input-group-addon text-primary">
+                                                <i class="fa fa-plus" title="Add"></i></span>
+                                        </div>
+                                        <div class="input-group-prepend cursor-pointer" (click)="remove(i)">
+                                            <span class="input-group-addon text-danger">
+                                                <i class="fa fa-trash" title="Remove"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer p-2">
+                <button class="btn btn-sm btn-primary btn-rounded" type="submit" [disabled]="form?.invalid || btnSubmit">
+                    <i class="fa fa-paper-plane"></i> | Submit
+                    <span [hidden]="!btnSubmit" class="spinner-border spinner-border-sm" role="status"
+                        aria-hidden="true"></span>
+                </button>
+                <button class="btn btn-sm btn-danger btn-rounded" type="button" [disabled]="btnSubmit"
+                    (click)="closeModal('Cancel click')">
+                    <i class="fa fa-times"></i> | Cancel
+                </button>
+            </div>
+        </form>
+    </div>
+</ng-template>

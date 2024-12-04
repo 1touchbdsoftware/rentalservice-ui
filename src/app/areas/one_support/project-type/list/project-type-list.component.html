@@ -1,0 +1,85 @@
+<div *ngIf="isEntryScreen; else formView" class="wrapper wrapper-content pt-3 animated fadeInDown" id="page-container">
+    <button class="btn btn-sm btn-outline btn-success mb-3" (click)="showAddForm()"><i class="fa fa-plus"></i> | Create</button>
+    <div class="row justify-content-center">
+        <!-- Project Type List Table -->
+        <div class="col-md-12">
+            <div class="ibox shadow-sm">
+                <div class="ibox-content shadow-sm bg-white border-radius-5 pt-1 pb-1 text-small">
+                    <div class="table-responsive">
+                        <table class="table table-sm table-striped table-hover">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>#SL</th>
+                                    <th>Type ID</th>
+                                    <th>Type Name</th>
+                                    <th>Description</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                <tr *ngFor="let item of projectTypeList | paginate:pageConfig; let i = index">
+                                    <td>{{i + 1 + (pageSize * (pageNumber - 1))}}</td>
+                                    <td>{{item.typeId}}</td>
+                                    <td>{{item.typeName}}</td>
+                                    <td>{{item.description}}</td>
+                                    <td class="text-center">
+                                        <span [class]="item.isActive ? 'label label-primary' : 'label label-danger'">
+                                            {{item.isActive ? "Active" : "Inactive"}}
+                                        </span>                                                                             
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-xs" title="Edit" (click)="editProjectType(item?.id)">
+                                            <i class="fa fa-pencil-square-o"></i>
+                                        </button>
+                                        <button class="btn btn-xs text-danger" title="Delete" (click)="deleteProjectType(item?.id)">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <pagination-controls (pageChange)="page_Changed($event)" [responsive]="true" [autoHide]="true"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Form View -->
+<ng-template #formView>
+  <div class="wrapper wrapper-content pt-3 animated fadeInDown">
+    <h4 class="text-center">{{ modalTitle }}</h4>
+    <div class="row justify-content-center">       
+        <div class="col-md-8">
+            <div class="ibox">   
+               <div class="ibox-content border-radius-5 text-small font-bold">
+                    <form [formGroup]="projectTypeForm" (ngSubmit)="submitProjectType()">
+                        <div class="form-group">
+                          <label for="typeName">Type Name</label><span class="text-danger"> * </span>
+                          <input type="text" id="typeName" class="form-control" formControlName="typeName" placeholder="Enter Type Name">                       
+                          <div *ngIf="projectTypeForm.controls['typeName'].invalid && 
+                            (projectTypeForm.controls['typeName'].dirty || 
+                                projectTypeForm.controls['typeName'].touched)" class="text-danger">
+                            <small *ngIf="projectTypeForm.controls['typeName'].errors?.['required']">Type Name is required.</small>
+                            <small *ngIf="projectTypeForm.controls['typeName'].errors?.['minlength']">Type Name length must be at least 6 characters.</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="description">Description</label>
+                          <textarea id="description" class="form-control" formControlName="description" rows="3" placeholder="Enter Description"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-outline" [disabled]="!projectTypeForm.valid"><i class="fa fa-paper-plane-o"></i> | {{ btnTitle}}</button>   
+                        &nbsp;&nbsp;
+                        <button type="button" class="btn btn-sm btn-outline btn-secondary" (click)="isEntryScreen = true"
+                                  ><i class="fa fa-arrow-left"></i> | Back to List</button>
+                      </form>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+   
+  </div>
+</ng-template>
