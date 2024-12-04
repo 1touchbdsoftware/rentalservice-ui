@@ -1,11 +1,23 @@
 
+* {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  color: white;
+}
+
+label {
+  font-size: 1rem;
+}
+
 .form-login-body {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;
-  background-image: url('/assets/img/Svg/360_F_281897358_3rj9ZBSZHo5s0L1ug7uuIHadSxh9Cc75.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

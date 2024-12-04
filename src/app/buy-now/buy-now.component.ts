@@ -18,7 +18,12 @@ export class BuyNowComponent {
    }
 
    backToHome(): void {
-    this.router.navigate(['/primary-header']); // Navigate to HeaderComponent
+    this.router.navigate(['/primary-header']); 
+  }
+
+  selectedService: string | null = null;
+  onCheckboxChange(value: string): void {
+    this.selectedService = this.selectedService === value ? null : value;
   }
   
 }
