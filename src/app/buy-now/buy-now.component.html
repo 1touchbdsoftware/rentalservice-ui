@@ -28,33 +28,35 @@
                                 </div>
                             </div>
                         </div>
-                        <form action="#!">
+                        <form #form="ngForm" (ngSubmit)="onSubmit()">
                             <div class="row gy-3 gy-md-4 overflow-hidden">
                                 <!-- name -->
                                 <div class="col-12">
                                     <label for="name" class="form-label">Name <span
                                             class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="name" id="name"
-                                        placeholder="Your Name" required>
+                                    <input type="text" class="form-control" id="name" name="name" [(ngModel)]="formData.name" placeholder="Your Name"
+                                    required>
                                 </div>
 
                                 <!-- email -->
                                 <div class="col-12">
                                     <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required>
+                                    <input type="email" class="form-control" id="email" name="email" [(ngModel)]="formData.email"
+                                      placeholder="name@example.com" required>
                                 </div>
 
                                 <!-- address -->
                                 <div class="col-12">
                                     <label for="address" class="form-label">Address</label>
-                                    <input type="text" class="form-control" name="address" id="address"
-                                        placeholder="Your Address">
+                                    <input type="text" class="form-control" id="address" name="address" [(ngModel)]="formData.address"
+                                      placeholder="Your Address">
                                 </div>
-                                
+
                                 <!-- contact -->
                                 <div class="col-12">
                                     <label for="contact" class="form-label">Contact</label>
-                                    <input type="number" class="form-control" name="contact" id="contact" value="" placeholder="Your Contacts">
+                                    <input type="number" class="form-control" id="contact" name="contact" [(ngModel)]="formData.contact"
+                                      placeholder="Your Contact No.">
                                 </div>
 
 
@@ -62,37 +64,40 @@
                                 <div class="col-12">
                                     <label for="" class="form-label">Select Service -</label>
                                     <div class="ml-3">
-                                        <input class="form-check-input custom-checkbox" type="checkbox" value="Property Maintenance" name="service[]"
-                                            id="propertyMaintenance">
+                                        <input class="form-check-input" type="checkbox" id="propertyMaintenance"
+                                          (change)="onCheckboxChange('Property Maintenance')">
                                         <label for="propertyMaintenance" class="form-check-label">Property Maintenance</label>
                                     </div>
                                     <div class="ml-3">
-                                        <input class="form-check-input custom-checkbox" type="checkbox" value="Rental Service" name="service[]"
-                                            id="rentalService">
+                                        <input class="form-check-input" type="checkbox" id="rentalService" (change)="onCheckboxChange('Rental Service')">
                                         <label for="rentalService" class="form-check-label">Rental Service</label>
                                     </div>
                                     <div class="ml-3">
-                                        <input class="form-check-input custom-checkbox" type="checkbox" value="Property Construction" name="service[]"
-                                            id="propertyConstruction">
+                                        <input class="form-check-input" type="checkbox" id="propertyConstruction"
+                                          (change)="onCheckboxChange('Property Construction')">
                                         <label for="propertyConstruction" class="form-check-label">Property Construction</label>
                                     </div>
                                 </div>
 
+                                <!-- Agree Checkbox -->
                                 <div class="col-12">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" name="iAgree"
-                                            id="iAgree" required>
-                                        <label class="form-check-label text-secondary" for="iAgree">
-                                            I agree to the <a href="#!" class="link-primary text-decoration-none">terms
-                                                and conditions</a>
-                                        </label>
-                                    </div>
+                                  <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="iAgree" name="iAgree" [(ngModel)]="formData.iAgree" required>
+                                    <label class="form-check-label text-secondary" for="iAgree">
+                                      I agree to the <a href="#!" class="link-primary text-decoration-none">terms and conditions</a>
+                                    </label>
+                                  </div>
                                 </div>
+
+                                <!-- Submit Button -->
                                 <div class="col-12">
-                                    <div class="d-grid">
-                                        <button class="btn bsb-btn-xl btn-secondary" type="submit"><i class="fa fa-sign-in" aria-hidden="true"></i> Register</button>
-                                    </div>
+                                  <div class="d-grid">
+                                    <button class="btn bsb-btn-xl btn-secondary" type="submit">
+                                      <i class="fa fa-sign-in" aria-hidden="true"></i> Register
+                                    </button>
+                                  </div>
                                 </div>
+
                             </div>
                         </form>
                         <hr>
