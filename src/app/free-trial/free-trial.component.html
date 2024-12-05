@@ -30,68 +30,68 @@
                                 </div>
                             </div>
                         </div>
-                        <form action="#!">
+                        <form #trialForm="ngForm" (ngSubmit)="onSubmit()">
                             <div class="row gy-3 gy-md-4 overflow-hidden">
                                 <!-- name -->
                                 <div class="col-12">
                                     <label for="name" class="form-label">Name <span
                                             class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="name" id="name"
-                                        placeholder="Your Name" required>
+                                    <input type="text" class="form-control" id="name" name="name" [(ngModel)]="formData.name" placeholder="Your Name"
+                                      required />
                                 </div>
 
                                 <!-- business email -->
                                 <div class="col-12">
                                     <label for="businessEmail" class="form-label">Business Email <span
                                             class="text-danger">*</span></label>
-                                    <input type="email" class="form-control" name="businessEmail" id="businessEmail"
-                                        placeholder="Business Email" required>
+                                    <input type="email" class="form-control" id="businessEmail" name="businessEmail" [(ngModel)]="formData.businessEmail"
+                                      placeholder="Business Email" required />
                                 </div>
 
                                 <!-- company name -->
                                 <div class="col-12">
                                     <label for="companyName" class="form-label">Company Name <span
                                             class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="companyName" id="companyName"
-                                        placeholder="Company Name" required>
+                                    <input type="text" class="form-control" id="companyName" name="companyName" [(ngModel)]="formData.companyName"
+                                      placeholder="Company Name" required />
                                 </div>
 
-                                <!-- phone & segments -->
+                                <!-- phone -->
                                 <div class="col-12">
                                     <div class="col-md-12 d-inline-block">
                                         <label for="phone" class="form-label">Phone</label>
-                                        <input type="number" class="form-control" name="phone" id="phone" placeholder="Phone">
-                                    </div>                              
+                                        <input type="number" class="form-control" id="phone" name="phone" [(ngModel)]="formData.phone" placeholder="Phone" />
+                                    </div>
                                 </div>
 
                                 <!-- service checkbox -->
                                 <div class="col-12">
                                     <label for="" class="form-label">Select Service :</label>
                                     <div class="ml-3">
-                                        <input class="form-check-input single-select custom-checkbox" type="checkbox" value="Property Maintenance" name="service"
-                                            id="propertyMaintenance" [checked]="selectedService == 'Property Maintenance'"
-                                            (change)="onCheckboxChange('Property Maintenance')">
+                                        <input class="form-check-input" type="radio" id="propertyMaintenance" name="selectedService"
+                                          value="Property Maintenance" [(ngModel)]="formData.selectedService" />
                                         <label for="propertyMaintenance" class="form-check-label">Property Maintenance</label>
                                     </div>
                                     <div class="ml-3">
-                                        <input class="form-check-input single-select custom-checkbox" type="checkbox" value="Rental Service" name="service" id="rentalService" [checked]="selectedService == 'Rental Service'"
-                                        (change)="onCheckboxChange('Rental Service')">
+                                        <input class="form-check-input" type="radio" id="rentalService" name="selectedService" value="Rental Service"
+                                          [(ngModel)]="formData.selectedService" />
                                         <label for="rentalService" class="form-check-label">Rental Service</label>
                                     </div>
                                     <div class="ml-3">
-                                        <input class="form-check-input single-select custom-checkbox" type="checkbox" value="Property Construction" name="service"
-                                            id="propertyConstruction"   [checked]="selectedService == 'Property Construction'"
-                                            (change)="onCheckboxChange('Property Construction')">
+                                        <input class="form-check-input" type="radio" id="propertyConstruction" name="selectedService"
+                                          value="Property Construction" [(ngModel)]="formData.selectedService" />
                                         <label for="propertyConstruction" class="form-check-label">Property Construction</label>
                                     </div>
                                 </div>
 
 
 
-                                
+
                                 <div class="col-12">
                                     <div class="d-grid">
-                                        <button class="btn bsb-btn-xl btn-secondary" type="submit">Sign Up</button>
+                                      <button type="submit" class="btn bsb-btn-xl btn-secondary" [disabled]="trialForm.invalid">
+                                        Sign Up
+                                      </button>
                                     </div>
                                 </div>
                             </div>

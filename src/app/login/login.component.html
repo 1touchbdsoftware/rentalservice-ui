@@ -1,37 +1,52 @@
-
 <div class="d-flex justify-content-center align-items-center vh-100" style="background-color: rgb(191, 214, 216);">
-    <div class="login-card p-4 shadow rounded" style="background-color: rgb(94, 134, 129);">
-  
-      <!-- Login Form -->
-      <div class="text-center mb-4">
-        <h2 class="text-white">Welcome to Rental Service</h2>
-        <hr style="color: white;">
-      </div>
-  
-      <form (ngSubmit)="1==1">
-        <label for="email" class="form-label">Email</label>
-        <div class="form-group mb-3">
-          <input type="email" class="form-control" id="email" placeholder="Enter Email..." required>
-        </div>
-        <div class="form-group mb-3">
-          <label for="password" class="form-label">Password</label>
-          <input type="password" class="form-control" id="password" placeholder="Enter Password..." required>
-        </div>
-        <div class="form-group mb-3" style="display: flex; justify-content: space-between; align-items: center; text-decoration: none !important;">
-          <a href="#" class="login-forgot" style="font-size: 0.8rem;">Forgot Password?</a>
-          
-          <span style="font-size: 0.8rem;">
-            Take a <a href="#">FREE TRIAL</a>.
-          </span>
-        </div>
-  
-        <button type="submit" class="btn btn-primary w-100">Submit</button>
-      </form>
-      <hr>
-      <a class="btn btn-sm btn-outline-info" (click)="backToHome()"><i class="fa fa-arrow-left" aria-hidden="true"></i>
-        Back</a>
-  
-    </div>
-  </div>
+  <div class="login-card p-4 shadow rounded" style="background-color: rgb(94, 134, 129);">
 
-  
+    <!-- Login Form -->
+    <div class="text-center mb-4">
+      <h2 class="text-white" style="font-family: serif;">Welcome to Rental Service</h2>
+      <hr style="color: white;">
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+      <!-- Email Input -->
+      <div class="form-group mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" id="email" formControlName="email" class="form-control" placeholder="Enter Email">
+        <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid" style="color: red;">
+          <div *ngIf="loginForm.get('email')?.errors?.['required']">Email is required!</div>
+          <div *ngIf="loginForm.get('email')?.errors?.['email']">Please enter a valid email address!</div>
+        </div>
+      </div>
+
+      <!-- Password Input -->
+      <div class="form-group mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" id="password" formControlName="password" class="form-control"
+          placeholder="Enter Password">
+        <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid" style="color: red;">
+          <div *ngIf="loginForm.get('password')?.errors?.['required']">Password is required!</div>
+          <div *ngIf="loginForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters long!
+          </div>
+        </div>
+      </div>
+
+      <!-- Forgot Password and Free Trial Links -->
+      <div class="form-group mb-3" style="display: flex; justify-content: space-between; align-items: center;">
+        <a href="#" class="login-forgot" style="font-size: 0.8rem;">Forgot Password?</a>
+        <span style="font-size: 0.8rem;"><a href="#">Take A FREE TRIAL</a>.</span>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary w-100" [disabled]="loginForm.invalid">Submit</button>
+    </form>
+
+    <hr>
+
+    <!-- Back Button -->
+    <a class="btn btn-sm btn-outline-info" (click)="backToHome()">
+      <i class="fa fa-arrow-left" aria-hidden="true"></i> Back
+    </a>
+
+  </div>
+</div>

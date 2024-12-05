@@ -29,7 +29,7 @@ export function tokenGetter() {
     HttpClientModule,
     AppRoutingModule, // Import AppRoutingModule
     ToastrModule.forRoot(),
-    AreasModule,
+    // AreasModule,
     NgbAlertModule,
     NgbCarouselModule,
     NgbModule,
